@@ -1,0 +1,102 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>telnet-server</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>telnet-server</name>
+  <description>Test Telnet Server</description>
+  
+  <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<javadoc.aggregate>true</javadoc.aggregate>
+		<maven.compile.source>1.6</maven.compile.source>
+		<maven.compile.target>1.6</maven.compile.target>
+	</properties>
+	
+	<build>
+		<plugins>
+			<!-- Compiler settings -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<jdkLevel>1.6</jdkLevel> 
+					<source>1.6</source>
+                    <target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+	             <artifactId>maven-jar-plugin</artifactId>
+	             <configuration>
+	             	<archive>
+	                	<manifest>
+	                		<mainClass>com.telnet.server.Main</mainClass>
+	                	</manifest>
+	                </archive>
+	             </configuration>
+            </plugin>
+            <!-- Code Coverage Configurations -->
+			<plugin>
+        		<groupId>org.codehaus.mojo</groupId>
+        		<artifactId>cobertura-maven-plugin</artifactId>
+        		<version>2.5.1</version>
+        		<configuration>
+        			 <check>
+            			<branchRate>75</branchRate>
+            			<lineRate>85</lineRate>
+            			<haltOnFailure>true</haltOnFailure>
+            			<totalBranchRate>75</totalBranchRate>
+            			<totalLineRate>85</totalLineRate>
+            			<packageLineRate>85</packageLineRate>
+            			<packageBranchRate>75</packageBranchRate>
+            		</check>
+        			<formats>
+        				<format>html</format>
+        			</formats>
+        			<instrumentation>
+            			<excludes>
+              				<exclude>com/telnet/server/Main.class</exclude>
+                    	</excludes>
+          			</instrumentation>
+        		</configuration>
+        		<executions>
+	          		<execution>
+                    	<phase>package</phase>
+ 		                <goals>
+ 		                	<goal>cobertura</goal>
+ 		                	<goal>check</goal>
+        	           </goals>
+                	</execution>
+        		</executions>
+      		</plugin>
+		</plugins>
+	</build>
+	
+	<!-- Report Generation -->
+	<reporting>
+		<plugins>
+			<!-- Code Coverage -->
+			<plugin>
+        		<groupId>org.codehaus.mojo</groupId>
+        		<artifactId>cobertura-maven-plugin</artifactId>
+        		<version>2.5.1</version>
+      		</plugin>
+		</plugins>
+	</reporting>
+	
+	
+	<groupId>com.telnet.server</groupId>
+	<dependencies>
+		<!-- Test Frameworks and Dependencies -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+		</dependency>
+	</dependencies>
+	
+</project>
